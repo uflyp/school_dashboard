@@ -23,6 +23,7 @@ $nilaiList = $stmtNilai->fetchAll();
 // If empty, fetch all available sample grades so view is always rich
 if (empty($nilaiList)) {
     $nilaiList = $pdo->query("SELECT * FROM nilai ORDER BY id ASC LIMIT 6")->fetchAll();
+}
 // Calculate GPA for student
 $avgStmt = $pdo->prepare("SELECT AVG((nilai_tugas + nilai_uts + nilai_uas)/3.0) FROM nilai WHERE nis = ?");
 $avgStmt->execute([$nis]);
